@@ -6,6 +6,7 @@ import com.github.DominasPL.tennisapplication.dtos.RegistrationFormDTO;
 import com.github.DominasPL.tennisapplication.dtos.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,16 +17,19 @@ import java.util.Optional;
 public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
     public void registerUser(RegistrationFormDTO form) {
         User user = Converters.convertToUser(form);
-
+        user.setPassword(passwordEncoder.encode((user.getPassword())));
         logger.info("Rejestracja użytjownika: " + user);
         userRepository.save(user);
         logger.info("Użytkownika zarejestrowany: " + user);

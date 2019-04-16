@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/register")
@@ -31,10 +32,11 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String processRegistration(@Valid @ModelAttribute("registrationForm") RegistrationFormDTO form, BindingResult result) {
+    public String processRegistration(@Valid @ModelAttribute("registrationForm") RegistrationFormDTO form, BindingResult result, Principal principal) {
         if (result.hasErrors()) {
             return "registration-page";
         }
+
 
         if (!checkPasswordsEquality(form)) {
             result.rejectValue("password", null, "Hasło i powtórzone hasło niezgodne.");
