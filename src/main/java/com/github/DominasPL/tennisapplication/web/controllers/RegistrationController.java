@@ -32,11 +32,10 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String processRegistration(@Valid @ModelAttribute("registrationForm") RegistrationFormDTO form, BindingResult result, Principal principal) {
+    public String processRegistration(@Valid @ModelAttribute("registrationForm") RegistrationFormDTO form, BindingResult result) {
         if (result.hasErrors()) {
             return "registration-page";
         }
-
 
         if (!checkPasswordsEquality(form)) {
             result.rejectValue("password", null, "Hasło i powtórzone hasło niezgodne.");
@@ -49,20 +48,35 @@ public class RegistrationController {
             return "registration-page";
         }
 
+        if (!checkIsEmailAvailable(form)) {
+            result.rejectValue("email",null, "Email jest już zajęty.");
+            return "registration-page";
+        }
+
         userService.registerUser(form);
 
-        return "redirect:index.html";
+        return "redirect:/";
 
     }
 
     private boolean checkIsUsernameAvailable(RegistrationFormDTO form) {
-        UserDTO user = userService.findUser(form.getUsername());
+        UserDTO user = userService.findUserByUsername(form.getUsername());
         if (user == null) {
             return true;
         }
 
         return false;
     }
+
+    private boolean checkIsEmailAvailable(RegistrationFormDTO form) {
+        UserDTO user = userService.findUserByEmail(form.getEmail());
+        if (user == null) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     private boolean checkPasswordsEquality(RegistrationFormDTO form) {
 

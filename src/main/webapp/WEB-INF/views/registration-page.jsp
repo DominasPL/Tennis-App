@@ -18,8 +18,7 @@
     <form:form modelAttribute="registrationForm" method="post">
         <form:errors path="*"/> <br>
         Nazwa uzytkownika: <form:input path="username"/> <br>
-        Imie: <form:input path="firstName"/> <br>
-        Nazwisko: <form:input path="lastName"/> <br>
+        Email: <form:input path="email"/> <br>
         Hasło: <form:input path="password"/> <br>
         Potwierdz hasło: <form:input path="confirmedPassword"/> <br>
         <input class="btn btn-outline-warning" type="submit" value="Zatwierdź"/>

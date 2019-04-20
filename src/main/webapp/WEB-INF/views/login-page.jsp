@@ -17,10 +17,10 @@
 <form method="post" action="/login">
 
     <c:if test="${param.error!=null}">
-        <span>Nieprawidłowe dane logowania!</span>
+        <span>Nieprawidłowe dane logowania!</span> <br>
     </c:if>
     <c:if test="${param.logout != null}">
-        <span>Zostałeś wylogowany!</span>
+        <span>Zostałeś wylogowany!</span> <br>
     </c:if>
     Nazwa użytkownika:
     <input type="text" name="username" required min="3" max="20"/> <br/>

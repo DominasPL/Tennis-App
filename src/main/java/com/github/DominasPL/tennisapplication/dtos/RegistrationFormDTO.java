@@ -2,7 +2,7 @@ package com.github.DominasPL.tennisapplication.dtos;
 
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,9 +17,7 @@ public class RegistrationFormDTO {
     private String password;
     @NotNull @Size(min = 3, max = 20)
     private String confirmedPassword;
-    @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
+    @Email
+    private String email;
 
 }

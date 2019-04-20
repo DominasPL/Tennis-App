@@ -38,8 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //tak jak w bolku try catch od najbardziej szczegółowych do najmniej
-                .antMatchers("/register").permitAll() // dostep dla wszystkich
+                .antMatchers("/register").anonymous() // dostep dla niezalogowanych
                 .antMatchers("/login").anonymous() // dostep dla niezalogowanych
+                .antMatchers("/ranking").permitAll() // dostep dla niezalogowanych
+                .antMatchers("/").permitAll() // dostep dla wszystkich
                 .antMatchers("/user", "/user/**").hasRole("USER") // tylko dla userow
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN") // tylko dla adminow
                 .antMatchers("/media/**").permitAll()//dostep do folderu media dla wszystkich
@@ -53,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout") // strona po wylogowaniu
+                .logoutSuccessUrl("/") // strona po wylogowaniu
                 .and()
             .csrf()
                 .disable()

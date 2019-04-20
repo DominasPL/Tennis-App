@@ -21,10 +21,16 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id", name = "id")
+    private UserDetails userDetails;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id", name = "id")
+    private Ranking ranking;
 
     @Override
     public boolean equals(Object o) {
@@ -39,6 +45,5 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, username);
     }
-
 
 }
