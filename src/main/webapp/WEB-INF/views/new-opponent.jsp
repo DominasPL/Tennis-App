@@ -1,0 +1,29 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: dominik
+  Date: 4/21/19
+  Time: 8:44 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Opponent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1>Wylosowany przeciwnik</h1>
+<tr>
+    Nazwa użytkownika: <td>${randomOpponent.username}</td>
+    - Punkty: <td>${randomOpponent.points}</td>
+    <br>
+</tr>
+
+<a class="btn btn-primary" href="/new-match/show-available-opponents/new-opponent/duel" role="button">Rozpocznij pojedynek</a>
+<a class="btn btn-primary" href="/new-match/show-available-opponents" role="button">Powrót</a>
+
+</body>
+</html>

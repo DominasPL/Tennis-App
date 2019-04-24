@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: dominik
@@ -14,12 +15,18 @@
 <body>
 
     <h1>Hello!</h1>
-    <a href="/login">Logowanie</a>
-    <a href="/register">Rejestracja</a>
+    <sec:authorize access="!isAuthenticated()">
+        <a href="/login">Logowanie</a>
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <a href="/register">Rejestracja</a>
+    </sec:authorize>
     <a href="/edit">Mój profil</a>
     <a href="/ranking">Ranking</a>
-    <a href="">Ostatnie pojedynki</a>
-    <a href="">Wyszukaj przeciwnika</a>
-    <a href="/logout">Wyloguj</a>
+    <a href="/new-match">Nowy mecz</a>
+    <a href="/last-matches">Ostatnie mecze</a>
+    <sec:authorize access="isAuthenticated()">
+        <a href="/logout">Wyloguj</a>
+    </sec:authorize>
 </body>
 </html>

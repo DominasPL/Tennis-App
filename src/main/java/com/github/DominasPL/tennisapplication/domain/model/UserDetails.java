@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @ToString
 public class UserDetails {
-
+    //TODO przeniesc walidacje do EditUserDTO
     @Id
     private Long id;
     @Size(max = 100)

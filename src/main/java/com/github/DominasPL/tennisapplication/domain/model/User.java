@@ -3,6 +3,8 @@ package com.github.DominasPL.tennisapplication.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -31,6 +33,11 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id", name = "id")
     private Ranking ranking;
+
+    @ManyToMany
+    @JoinTable(name = "user_matches", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "match_id"))
+    private List<Match> matches = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
