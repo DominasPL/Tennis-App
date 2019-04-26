@@ -20,7 +20,7 @@
             <td>${match.player1} vs ${match.player2}</td>
             Data: <td>${match.date}</td>
             - Zwycięzca: <td>${match.winner}</td>
-            <td><a class="btn btn-primary" href="/last-matches/comments?player1=${match.player1}&&player2=${match.player2}&&date=${match.date}&&winner=${match.winner}&&id=${match.id}" role="button">Komentarze</a></td>
+            <td><a class="btn btn-primary" href="/last-matches/${match.id}" role="button">Komentarze</a></td>
             <br>
         </tr>
     </c:forEach>

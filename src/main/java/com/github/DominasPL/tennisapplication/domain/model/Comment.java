@@ -21,9 +21,15 @@ public class Comment {
     private LocalDateTime created;
     private String text;
 
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Match match;
 
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
     }
+
 }

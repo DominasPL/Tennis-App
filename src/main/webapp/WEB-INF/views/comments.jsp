@@ -15,9 +15,9 @@
 </head>
 <body>
     <tr>
-        <td>${player1} vs ${player2}</td>
-        Data: <td>${date}</td>
-        - Zwycięzca: <td>${winner}</td>
+        <td>${match.player1} vs ${match.player2}</td>
+        Data: <td>${match.date}</td>
+        - Zwycięzca: <td>${match.winner}</td>
         <br>
     </tr>
     <c:forEach items="${comments}" var="comment">
@@ -29,10 +29,11 @@
     </c:forEach>
 
     <h1>Dodaj komentarz</h1>
-    <form:form modelAttribute="comment" method="post">
+    <form:form modelAttribute="commentMatchDTO" method="post" action="/last-matches/add-comment">
         <form:errors path="*"/> <br>
         <form:textarea path="text"/> <br>
-        <input name="match_id" type="hidden" value="${match_id}">
+        <form:hidden path="createdBy" value="${loggedUser}"/>
+        <form:hidden path="match_id" value="${match.id}"/>
         <input class="btn btn-outline-warning" type="submit" value="Dodaj"/>
     </form:form>
 

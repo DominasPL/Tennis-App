@@ -3,6 +3,7 @@ package com.github.DominasPL.tennisapplication.services;
 import com.github.DominasPL.tennisapplication.domain.model.*;
 import com.github.DominasPL.tennisapplication.domain.repositories.UserRepository;
 import com.github.DominasPL.tennisapplication.dtos.*;
+import org.springframework.security.core.parameters.P;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,11 +96,30 @@ public class Converters {
         List<CommentDTO> comments = new ArrayList<>();
         for (Comment comment: allCommentsByMatchId) {
             CommentDTO commentDTO = new CommentDTO();
+            commentDTO.setCreatedBy(comment.getUser().getUsername());
             commentDTO.setCreated(comment.getCreated());
             commentDTO.setText(comment.getText());
             comments.add(commentDTO);
         }
 
         return comments;
+    }
+
+    public static Match2DTO convertToMatch2DTO(Match match) {
+        Match2DTO match2DTO = new Match2DTO();
+        match2DTO.setId(match.getId());
+        match2DTO.setDate(match.getDate());
+        match2DTO.setWinner(match.getWinner());
+        List<User> users = match.getUsers();
+        int i = 0;
+        for (User user: users) {
+            if (i == 0) {
+                match2DTO.setPlayer1(user.getUsername());
+                i++;
+            } else {
+                match2DTO.setPlayer2(user.getUsername());
+            }
+        }
+        return match2DTO;
     }
 }

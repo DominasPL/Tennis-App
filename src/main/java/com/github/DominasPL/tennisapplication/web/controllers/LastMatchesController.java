@@ -2,9 +2,9 @@ package com.github.DominasPL.tennisapplication.web.controllers;
 
 import com.github.DominasPL.tennisapplication.domain.model.Comment;
 import com.github.DominasPL.tennisapplication.domain.model.Match;
-import com.github.DominasPL.tennisapplication.dtos.CommentDTO;
-import com.github.DominasPL.tennisapplication.dtos.Match2DTO;
-import com.github.DominasPL.tennisapplication.dtos.MatchDTO;
+import com.github.DominasPL.tennisapplication.domain.model.User;
+import com.github.DominasPL.tennisapplication.domain.repositories.UserRepository;
+import com.github.DominasPL.tennisapplication.dtos.*;
 import com.github.DominasPL.tennisapplication.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,29 +40,27 @@ public class LastMatchesController {
 
     }
 
-    @GetMapping("/comments")
-    public String showComments(Model model, @RequestParam Long id, @RequestParam String player1, @RequestParam String player2, @RequestParam String date, @RequestParam String winner) {
+    @GetMapping("/{match_id}")
+    public String showComments(Model model, Principal principal, @PathVariable Long match_id) {
 
-        List<CommentDTO> allCommentsByMatchId = userService.findAllCommentsByMatchId(id);
-        Comment comment = new Comment();
-        model.addAttribute("comment", comment);
+        List<CommentDTO> allCommentsByMatchId = userService.findAllCommentsByMatchId(match_id);
+        CommentMatchDTO commentMatchDTO = new CommentMatchDTO();
+        Match2DTO matchById = userService.findMatchById(match_id);
 
         model.addAttribute("comments", allCommentsByMatchId);
-        model.addAttribute("player1", player1);
-        model.addAttribute("player2", player2);
-        model.addAttribute("date", date);
-        model.addAttribute("winner", winner);
-        model.addAttribute("match_id", id);
+        model.addAttribute("commentMatchDTO", commentMatchDTO);
+        model.addAttribute("match", matchById);
+        model.addAttribute("loggedUser", principal.getName());
         return "comments";
 
     }
 
-    @PostMapping("/comments")
-    public String addComment(@ModelAttribute Comment comment, @RequestParam Long id) {
+    @PostMapping("/add-comment")
+    public String addComment(@ModelAttribute CommentMatchDTO commentMatchDTO) {
 
-        userService.saveComment(id, comment);
+        userService.saveComment(commentMatchDTO);
 
-        return "redirect:/last-matches";
+        return "redirect:/last-matches/"+commentMatchDTO.getMatch_id();
     }
 
 

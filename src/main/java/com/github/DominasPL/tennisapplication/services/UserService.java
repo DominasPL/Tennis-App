@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -106,6 +107,7 @@ public class UserService {
                 double winPercentage2 = (double)(ranking2Updated.getWon()) / (ranking2Updated.getMatchesPlayed());
                 ranking2Updated.setWinPercentage((double)Math.round(winPercentage2 * 100) /100);
                 addMatch(user1, user2, user1.getUsername());
+                userRepository.save(user1);
                 userRepository.save(user2);
                 return user1.getUsername();
 
@@ -130,6 +132,7 @@ public class UserService {
                 ranking1Updated.setWinPercentage((double)Math.round(winPercentage2 * 100) / 100);
                 addMatch(user1, user2, user2.getUsername());
                 userRepository.save(user1);
+                userRepository.save(user2);
                 return user2.getUsername();
 
             } else if (random.nextInt(user1Score) + 1 == random.nextInt(user2Score) + 1) {
@@ -149,31 +152,17 @@ public class UserService {
         user1.getMatches().add(match1);
         user2.getMatches().add(match1);
     }
-//TODO WYWALA NULLA JAK chce mecz pobrac z bazy danych
+
     @Transactional
-    public void saveComment(Long id, Comment comment) {
-        Match matchById = findMatchById(id);
-//        logger.info(matchById.toString());
-        List<Comment> comments = matchById.getComments();
-        comments.add(comment);
-        matchRepository.save(matchById);
+    public void saveComment(CommentMatchDTO commentMatchDTO) {
+        Match matchById = matchRepository.getOne(commentMatchDTO.getMatch_id());
+        User user = userRepository.findByUsername(commentMatchDTO.getCreatedBy()).get();
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setMatch(matchById);
+        comment.setText(commentMatchDTO.getText());
+        commentRepository.save(comment);
     }
-//TODO o co tu chodzi ze nie pobiera meczu?
-    public Match findMatchById(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("ID meczu musi być podane!");
-        }
-
-        Optional<Match> optionalMatch = matchRepository.findById(id);
-        Match match = optionalMatch.orElse(null);
-        if (match == null) {
-            logger.debug("Nie znaleziono meczu o id " + id);
-            return null;
-        }
-
-        return match;
-    }
-
 
     public List<User> findAllUsers() {
 
@@ -298,6 +287,17 @@ public class UserService {
     }
 
 
+    public Match2DTO findMatchById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id musi byc podane!");
+        }
+
+        Match match = matchRepository.findById(id).get();
+        Match2DTO match2DTO = Converters.convertToMatch2DTO(match);
+
+        return match2DTO;
+
+    }
 }
 
 

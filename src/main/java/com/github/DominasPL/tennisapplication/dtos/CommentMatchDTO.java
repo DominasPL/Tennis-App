@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDTO {
+public class CommentMatchDTO {
 
     private LocalDateTime created;
     private String text;
+    private Long match_id;
     private String createdBy;
+
 
 }

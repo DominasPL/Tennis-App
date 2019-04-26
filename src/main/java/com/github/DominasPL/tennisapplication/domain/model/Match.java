@@ -22,10 +22,9 @@ public class Match {
     private LocalDateTime date;
     private String winner;
     @ManyToMany(mappedBy = "matches")
-    private List<User> users = new ArrayList<>();
+    private List<User> users;
 
-    @OneToMany
-    @JoinColumn(name = "match_id")
+    @OneToMany(mappedBy = "match")
     private List<Comment> comments;
 
     @PrePersist

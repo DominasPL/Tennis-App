@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    @Query(value = "SELECT id, created, text FROM comments WHERE match_id = ?1 ORDER BY created DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM comments WHERE match_id = ?1 ORDER BY created DESC", nativeQuery = true)
     List<Comment> findByMatchId(Long id);
 
 
