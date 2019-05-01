@@ -262,18 +262,6 @@ public class UserService {
         return matchDTOS;
     }
 
-    public List<Match2DTO> findAllMatches() {
-
-        List<Match> allMatches = matchRepository.findAll();
-        if (allMatches == null) {
-            return null;
-        }
-
-        List<Match2DTO> matches = Converters.convertToMatch2DTO(allMatches);
-
-        return matches;
-
-    }
 
     public List<CommentDTO> findAllCommentsByMatchId(Long id) {
         if (id == null) {
@@ -297,6 +285,33 @@ public class UserService {
 
         return match2DTO;
 
+    }
+
+    public List<UserWithRankingDTO> findLast50UsersSorted() {
+        List<User> sortedUsers = userRepository.findLastFifty();
+
+        if (sortedUsers == null) {
+            logger.debug("Nie znaleziono uzytkownikow!");
+            return null;
+        }
+
+        List<UserWithRankingDTO> sortedUserDTO = Converters.convertToUserWithRangkingDTO(sortedUsers);
+
+        return sortedUserDTO;
+
+    }
+
+    public List<Match2DTO> findLast50Matches() {
+        List<Match> matches = matchRepository.findLast50Matches();
+
+        if (matches == null) {
+            logger.debug("NIe znaleziono meczóW!");
+            return null;
+        }
+
+        List<Match2DTO> last50Matches = Converters.convertToMatch2DTO(matches);
+
+        return last50Matches;
     }
 }
 

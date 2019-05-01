@@ -3,6 +3,8 @@ package com.github.DominasPL.tennisapplication.web.controllers;
 import com.github.DominasPL.tennisapplication.dtos.RegistrationFormDTO;
 import com.github.DominasPL.tennisapplication.dtos.UserDTO;
 import com.github.DominasPL.tennisapplication.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
+
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     private UserService userService;
 

@@ -3,10 +3,10 @@ package com.github.DominasPL.tennisapplication.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "comments")
@@ -18,7 +18,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime created;
+    private String created;
     private String text;
 
     @ManyToOne
@@ -29,7 +29,10 @@ public class Comment {
 
     @PrePersist
     public void prePersist() {
-        created = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = now.format(formatter);
+        created = formatDateTime;
     }
 
 }

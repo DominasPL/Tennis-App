@@ -10,20 +10,47 @@
 <html>
 <head>
     <title>Opponent</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="/media/css/style.css" rel="stylesheet" />
+    <link href="/media/css/tables.css" rel="stylesheet" />
 </head>
 <body>
 
-<h1>Wylosowany przeciwnik</h1>
-<tr>
-    Nazwa użytkownika: <td>${randomOpponent.username}</td>
-    - Punkty: <td>${randomOpponent.points}</td>
-    <br>
-</tr>
+<jsp:include page="../elements/navbar.jsp"/>
+<div id="home-other">
+    <div class="landing-text">
+        <div id="table-ranking">
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="3" style="text-align: center">Wylosowany przeciwnik</th>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nazwa uzytkownika</th>
+                    <th scope="col">Punkty</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>${randomOpponent.username}</td>
+                    <td>${randomOpponent.points}</td>
+                    <br>
+                </tr>
+                </tbody>
+            </table>
+            <a class="btn btn-primary" href="/new-match/show-available-opponents/new-opponent/duel" role="button">Rozpocznij pojedynek</a>
+        </div>
+    </div>
+</div>
+<jsp:include page="../elements/footer.jsp"/>
 
-<a class="btn btn-primary" href="/new-match/show-available-opponents/new-opponent/duel" role="button">Rozpocznij pojedynek</a>
-<a class="btn btn-primary" href="/new-match/show-available-opponents" role="button">Powrót</a>
 
 </body>
 </html>

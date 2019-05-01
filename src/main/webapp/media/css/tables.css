@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th {
+    height: 50px;
+    border: 3px solid black;
+    text-align: center;
+}
+
+td {
+    height: 50px;
+    border: 3px solid black;
+    padding-left: 5px;
+}
+
+
+#table-ranking {
+    max-width: 1000px;
+    max-height: 1500px;
+    margin: 0 auto;
+}

@@ -122,4 +122,21 @@ public class Converters {
         }
         return match2DTO;
     }
+
+    public static List<UserWithRankingDTO> convertToUserWithRangkingDTO(List<User> sortedUsers) {
+        List<UserWithRankingDTO> userDTO = new ArrayList<>();
+        for (User user: sortedUsers) {
+            UserWithRankingDTO userWithRankingDTO = new UserWithRankingDTO();
+            userWithRankingDTO.setUsername(user.getUsername());
+            userWithRankingDTO.setPoints(user.getRanking().getPoints());
+            userWithRankingDTO.setLost(user.getRanking().getLost());
+            userWithRankingDTO.setWon(user.getRanking().getWon());
+            userWithRankingDTO.setMatchesPlayed(user.getRanking().getMatchesPlayed());
+            userWithRankingDTO.setWinPercentage(user.getRanking().getWinPercentage());
+            userDTO.add(userWithRankingDTO);
+        }
+
+        return userDTO;
+
+    }
 }

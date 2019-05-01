@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -19,7 +19,7 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime date;
+    private String date;
     private String winner;
     @ManyToMany(mappedBy = "matches")
     private List<User> users;
@@ -29,7 +29,10 @@ public class Match {
 
     @PrePersist
     public void prePersist() {
-        date = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = now.format(formatter);
+        date = formatDateTime;
     }
 
 }

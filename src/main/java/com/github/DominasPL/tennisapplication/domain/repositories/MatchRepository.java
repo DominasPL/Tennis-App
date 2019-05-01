@@ -14,8 +14,8 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
 
     Optional<Match> findById(Long id);
 
-    @Query(value = "SELECT * FROM matches LIMIT 50", nativeQuery = true)
-    Optional<Match> findMatches();
+    @Query(value = "SELECT * FROM matches ORDER BY date DESC LIMIT 50;", nativeQuery = true)
+    List<Match> findLast50Matches();
 
 
 }

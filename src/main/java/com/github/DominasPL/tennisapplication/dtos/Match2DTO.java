@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Match2DTO {
 
     private Long id;
-    private LocalDateTime date;
+    private String date;
     private String winner;
     private String player1;
     private String player2;

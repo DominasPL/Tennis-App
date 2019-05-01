@@ -32,6 +32,15 @@ html, body {
     background-size: cover;
 }
 
+#home-other {
+    background: url(/media/images/Tennis_Racket_and_Balls.jpg) no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    background-size: cover;
+}
+
 .landing-text {
     display: table-cell;
     text-align: center;
@@ -107,3 +116,4 @@ footer {
     background-repeat:   no-repeat;
     background-size:     cover;
 }
+

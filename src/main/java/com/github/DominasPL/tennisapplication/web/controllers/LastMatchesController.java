@@ -1,9 +1,5 @@
 package com.github.DominasPL.tennisapplication.web.controllers;
 
-import com.github.DominasPL.tennisapplication.domain.model.Comment;
-import com.github.DominasPL.tennisapplication.domain.model.Match;
-import com.github.DominasPL.tennisapplication.domain.model.User;
-import com.github.DominasPL.tennisapplication.domain.repositories.UserRepository;
 import com.github.DominasPL.tennisapplication.dtos.*;
 import com.github.DominasPL.tennisapplication.services.UserService;
 import org.slf4j.Logger;
@@ -32,8 +28,7 @@ public class LastMatchesController {
     @GetMapping
     public String showLastMatches(Model model) {
 
-        //TODO nie pobierac wszystkich meczów z bazy. Zrobić limit do 50 ostatnich spotkań.
-        List<Match2DTO> allMatches = userService.findAllMatches();
+        List<Match2DTO> allMatches = userService.findLast50Matches();
         model.addAttribute("allMatches", allMatches);
 
         return "last-matches";

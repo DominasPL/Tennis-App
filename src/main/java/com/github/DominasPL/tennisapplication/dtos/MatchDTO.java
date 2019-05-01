@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MatchDTO {
 
-    private LocalDateTime date;
+    private String date;
     private String winner;
     private String opponent;
 }

@@ -12,8 +12,7 @@
 <head>
     <title>Strona Główna</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
@@ -21,42 +20,7 @@
     <link href="/media/css/style.css" rel="stylesheet" />
 </head>
 <body>
-
-    <nav class="navbar navbar-inverse navbar fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a class="active" href="/">Strona główna</a></li>
-                    <li><a href="#">O nas</a></li>
-                    <li><a href="/ranking">Ranking</a></li>
-                    <li><a href="/last-matches">Ostatnie mecze</a></li>
-                    <sec:authorize access="isAuthenticated()">
-                        <li><a href="/edit">Mój profil</a></li>
-                    </sec:authorize>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <sec:authorize access="!isAuthenticated()">
-                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Logowanie</a></li>
-                    </sec:authorize>
-                    <sec:authorize access="!isAuthenticated()">
-                        <li><a href="/register"><span class="glyphicon glyphicon-user"></span>Rejestracja</a></li>
-                    </sec:authorize>
-                    <sec:authorize access="isAuthenticated()">
-                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Wyloguj</a></li>
-                    </sec:authorize>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
+    <jsp:include page="../elements/navbar.jsp"/>
 
     <div id="home">
         <div class="landing-text">
@@ -119,27 +83,11 @@
     </div>
 
 
-    <footer class="container-fluid text-center">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>Contact us</h3>
-                <br>
-                <p>Our address and info here</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>Connect</h3>
-                <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-                <a href="https://twitter.com/" class="fa fa-twitter"></a>
-                <a href="https://www.google.com/" class="fa fa-google"></a>
-                <a href="https://pl.linkedin.com/" class="fa fa-linkedin"></a>
-                <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
-                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-            </div>
-            <div class="col-sm-4">
-                <h3>Links</h3>
-            </div>
-        </div>
-    </footer>
+    <jsp:include page="../elements/footer.jsp"/>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 </body>
 </html>
