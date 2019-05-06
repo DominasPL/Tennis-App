@@ -38,17 +38,17 @@
                 </c:if>
                 <div class="form-group">
                     <label>Nazwa użytkownika:</label>
-                    <input type="text" class="form-control" name="username" required min="3" max="20" aria-describedby="emailHelp" placeholder="Enter username">
+                    <input type="text" class="form-control" name="username" required min="3" max="20" aria-describedby="emailHelp" placeholder="Podaj nazwe użytkownika">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" required min="3" max="20" placeholder="Password">
+                    <label>Hasło</label>
+                    <input type="password" class="form-control" name="password" required min="3" max="20" placeholder="Podaj hasło">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" name="remember-me">
-                    <label class="form-check-label">Check me out</label>
+                    <label class="form-check-label">Zapamiętaj</label>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" class="btn btn-primary btn-block">Potwierdź</button>
             </form>
         </section>
     </section>

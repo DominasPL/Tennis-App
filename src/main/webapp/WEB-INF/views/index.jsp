@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="/media/css/style.css" rel="stylesheet" />
 </head>
+
 <body>
     <jsp:include page="../elements/navbar.jsp"/>
 

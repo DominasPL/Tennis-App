@@ -31,21 +31,21 @@
             <form:errors path="*"/>
                 <div class="form-group">
                     <label>Nazwa użytkownika:</label>
-                    <form:input class="form-control" placeholder="Enter username" path="username"/>
+                    <form:input class="form-control" placeholder="Podaj nazwę użytkownika" path="username"/>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <form:input class="form-control" placeholder="Enter email" path="email"/>
+                    <form:input class="form-control" placeholder="Podaj email" path="email"/>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <form:password class="form-control" placeholder="Enter password" path="password"/>
+                    <label>Hasło</label>
+                    <form:password class="form-control" placeholder="Podaj hasło" path="password"/>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <form:password class="form-control" placeholder="Confirm password" path="confirmedPassword"/>
+                    <label>Potwierdź hasło</label>
+                    <form:password class="form-control" placeholder="Potwierdź hasło" path="confirmedPassword"/>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" class="btn btn-primary btn-block">Potwierdź</button>
         </form:form>
         </section>
     </section>

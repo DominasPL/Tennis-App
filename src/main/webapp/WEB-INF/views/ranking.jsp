@@ -26,37 +26,54 @@
 
 <div id="home-other">
     <div class="landing-text">
-    <div id="table-ranking">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="7" style="text-align: center">Ranking zawodników</th>
-            </tr>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nazwa użytkownika</th>
-                <th scope="col">Rozegrane mecze</th>
-                <th scope="col">Zwycięstwa</th>
-                <th scope="col">Porażki</th>
-                <th scope="col">Skuteczność</th>
-                <th scope="col">Punkty</th>
-             </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${users}" var="user" varStatus="userStatus">
-            <tr>
-                <td>${userStatus.count}</td>
-                <td>${user.username}</td>
-                <td>${user.matchesPlayed}</td>
-                <td>${user.won}</td>
-                <td>${user.lost}</td>
-                <td>${user.winPercentage}</td>
-                <td>${user.points}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    </div>
+        <div id="table-ranking">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="7" style="text-align: center">Ranking zawodników</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nazwa użytkownika</th>
+                        <th scope="col">Rozegrane mecze</th>
+                        <th scope="col">Zwycięstwa</th>
+                        <th scope="col">Porażki</th>
+                        <th scope="col">Skuteczność</th>
+                        <th scope="col">Punkty</th>
+                     </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${users}" var="user" varStatus="userStatus">
+                    <tr>
+                        <td>
+                            <c:choose>
+                                <c:when test="${page=='1'}">
+                                    ${userStatus.count}
+                                </c:when>
+                                <c:otherwise>
+                                    ${userStatus.count + 25}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>${user.username}</td>
+                        <td>${user.matchesPlayed}</td>
+                        <td>${user.won}</td>
+                        <td>${user.lost}</td>
+                        <td>${user.winPercentage}</td>
+                        <td>${user.points}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/ranking/1">Poprzedni</a></li>
+                <li class="page-item"><a class="page-link" href="/ranking/1">1</a></li>
+                <li class="page-item"><a class="page-link" href="/ranking/2">2</a></li>
+                <li class="page-item"><a class="page-link" href="/ranking/2">Następny</a></li>
+            </ul>
+        </nav>
     </div>
 </div>
 <jsp:include page="../elements/footer.jsp"/>

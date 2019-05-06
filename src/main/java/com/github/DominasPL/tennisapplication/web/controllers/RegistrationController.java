@@ -1,5 +1,6 @@
 package com.github.DominasPL.tennisapplication.web.controllers;
 
+import com.github.DominasPL.tennisapplication.domain.repositories.UserRepository;
 import com.github.DominasPL.tennisapplication.dtos.RegistrationFormDTO;
 import com.github.DominasPL.tennisapplication.dtos.UserDTO;
 import com.github.DominasPL.tennisapplication.services.UserService;
@@ -23,9 +24,11 @@ public class RegistrationController {
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     private UserService userService;
+    private UserRepository userRepository;
 
-    public RegistrationController(UserService userService) {
+    public RegistrationController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -58,7 +61,6 @@ public class RegistrationController {
         }
 
         userService.registerUser(form);
-
         return "redirect:/";
 
     }

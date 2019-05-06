@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //tak jak w bolku try catch od najbardziej szczegółowych do najmniej
                 .antMatchers("/register").anonymous() // dostep dla niezalogowanych
                 .antMatchers("/login").anonymous() // dostep dla niezalogowanych
-                .antMatchers("/ranking").permitAll() // dostep dla niezalogowanych
+                .antMatchers("/ranking/{page}").permitAll() // dostep dla niezalogowanych
+                .antMatchers("/about").permitAll() // dostep dla niezalogowanych
                 .antMatchers("/last-matches").permitAll() // dostep dla niezalogowanych
                 .antMatchers("/last-matches/comments").permitAll() // dostep dla niezalogowanych
                 .antMatchers("/").permitAll() // dostep dla wszystkich
