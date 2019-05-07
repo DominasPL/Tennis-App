@@ -45,6 +45,8 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div id="match-button">
             <a class="btn btn-primary" href="/new-match/show-available-opponents/new-opponent/duel" role="button">Rozpocznij pojedynek</a>
         </div>
     </div>

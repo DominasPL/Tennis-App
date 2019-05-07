@@ -28,24 +28,22 @@
             <table>
                 <thead>
                 <tr>
-                    <th colspan="3" style="text-align: center">Dostepni przeciwnicy</th>
+                    <th colspan="2" style="text-align: center">Ilość dostępnych przeciwników</th>
                 </tr>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nazwa uzytkownika</th>
-                    <th scope="col">Punkty</th>
+                    <th scope="col">Ilość</th>
+                    <th scope="col">Średnia ilość punktów</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${opponents}" var="opponent" varStatus="opponentStatus">
                     <tr>
-                        <td>${opponentStatus.count}</td>
-                        <td>${opponent.username}</td>
-                        <td>${opponent.points}</td>
+                        <td>${amount}</td>
+                        <td>${averagePoints}</td>
                     </tr>
-                </c:forEach>
                 </tbody>
             </table>
+        </div>
+        <div id="match-button">
             <a class="btn btn-primary" href="/new-match/show-available-opponents/new-opponent" role="button">Losuj przeciwnika</a>
         </div>
     </div>

@@ -22,7 +22,6 @@ public class RankingController {
 
     private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
 
-
     private UserService userService;
 
     public RankingController(UserService userService) {
@@ -35,9 +34,6 @@ public class RankingController {
 
         if (page == 1) {
             List<UserWithRankingDTO> first25 = allUsersSorted.subList(0, 25);
-            for (UserWithRankingDTO user: first25) {
-                logger.info(user.toString());
-            }
             model.addAttribute("users", first25);
         } else if (page == 2) {
             List<UserWithRankingDTO> last25 = allUsersSorted.subList(25, 50);

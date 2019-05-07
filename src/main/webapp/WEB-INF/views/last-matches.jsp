@@ -39,26 +39,33 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${allMatches}" var="match" varStatus="matchStatus">
+                <c:forEach items="${matches}" var="match" varStatus="matchStatus">
                     <tr>
-                        <td>${matchStatus.count}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${page=='1'}">
+                                    ${matchStatus.count}
+                                </c:when>
+                                <c:otherwise>
+                                    ${matchStatus.count + 25}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                         <td>${match.player1} vs ${match.player2}</td>
                         <td>${match.winner}</td>
                         <td>${match.date}</td>
-                        <td><a class="btn btn-primary" href="/last-matches/${match.id}" role="button">Link</a></td>
+                        <td><a class="btn btn-primary" href="/last-matches/${page}/${match.id}" role="button">Link</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-
         </div>
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/last-matches/1">Poprzedni</a></li>
+                <li class="page-item"><a class="page-link" href="/last-matches/1">1</a></li>
+                <li class="page-item"><a class="page-link" href="/last-matches/2">2</a></li>
+                <li class="page-item"><a class="page-link" href="/last-matches/2">Następny</a></li>
             </ul>
         </nav>
     </div>

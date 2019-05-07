@@ -15,7 +15,7 @@
             <li class="nav-item"><a class="nav-link" href="/">Strona główna</a></li>
             <li class="nav-item"><a class="nav-link" href="/about">O nas</a></li>
             <li class="nav-item"><a class="nav-link" href="/ranking/1">Ranking</a></li>
-            <li class="nav-item"><a class="nav-link" href="/last-matches">Ostatnie mecze</a></li>
+            <li class="nav-item"><a class="nav-link" href="/last-matches/1">Ostatnie mecze</a></li>
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item"><a class="nav-link" href="/edit">Mój profil</a></li>
             </sec:authorize>

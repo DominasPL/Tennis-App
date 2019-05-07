@@ -25,18 +25,29 @@ public class LastMatchesController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String showLastMatches(Model model) {
+    @GetMapping("/{page}")
+    public String showLastMatches(Model model, @PathVariable Long page) {
 
         List<Match2DTO> allMatches = userService.findLast50Matches();
-        model.addAttribute("allMatches", allMatches);
+
+        if (page == 1) {
+            List<Match2DTO> first25Matches = allMatches.subList(0, 25);
+            model.addAttribute("matches", first25Matches);
+        } else if (page == 2) {
+            List<Match2DTO> last25Matches = allMatches.subList(25, 50);
+            model.addAttribute("matches", last25Matches);
+        } else {
+            return "index";
+        }
+
+        model.addAttribute("page", page);
 
         return "last-matches";
 
     }
 
-    @GetMapping("/{match_id}")
-    public String showComments(Model model, Principal principal, @PathVariable Long match_id) {
+    @GetMapping("/{page}/{match_id}")
+    public String showComments(Model model, Principal principal, @PathVariable Long page, @PathVariable Long match_id) {
 
         List<CommentDTO> allCommentsByMatchId = userService.findAllCommentsByMatchId(match_id);
         CommentMatchDTO commentMatchDTO = new CommentMatchDTO();

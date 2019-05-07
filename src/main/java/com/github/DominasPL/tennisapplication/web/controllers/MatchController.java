@@ -1,7 +1,9 @@
 package com.github.DominasPL.tennisapplication.web.controllers;
 
+import com.github.DominasPL.tennisapplication.comparators.DateComparator;
 import com.github.DominasPL.tennisapplication.domain.model.Ranking;
 import com.github.DominasPL.tennisapplication.domain.model.User;
+import com.github.DominasPL.tennisapplication.dtos.Match2DTO;
 import com.github.DominasPL.tennisapplication.dtos.MatchDTO;
 import com.github.DominasPL.tennisapplication.dtos.UserDTO;
 import com.github.DominasPL.tennisapplication.services.UserService;
@@ -9,13 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -34,7 +34,18 @@ public class MatchController {
 
     @GetMapping
     public String newMatch(Model model, Principal principal) {
-        List<MatchDTO> userMatches = userService.findUserMatches(principal.getName());
+        List<MatchDTO> userMatches = userService.findUserMatches(principal.getName());// ostatnie 25 meczow usera
+
+        Collections.sort(userMatches, new DateComparator());
+
+        if (userMatches.size() < 25) {
+            userMatches = userMatches.subList(0, userMatches.size());
+        } else {
+            userMatches = userMatches.subList(0, 25);
+        }
+
+
+
 
         model.addAttribute("loggedUser", principal.getName());
         model.addAttribute("userMatches", userMatches);
@@ -45,7 +56,16 @@ public class MatchController {
     public String showOpponent(Principal principal, Model model) {
 
         List<UserDTO> availableOpponents = findAvailableOpponents(principal);
-        model.addAttribute("opponents", availableOpponents);
+        double sum = 0.0;
+
+        for (UserDTO userDTO: availableOpponents) {
+            sum += userDTO.getPoints();
+        }
+
+        double average = Math.round(sum / availableOpponents.size());
+
+        model.addAttribute("amount", availableOpponents.size());
+        model.addAttribute("averagePoints", average);
 
         return "show-available-opponents";
     }

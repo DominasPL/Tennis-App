@@ -49,6 +49,8 @@
                 </c:forEach>
                 </tbody>
             </table>
+        </div>
+        <div id="match-button">
             <a class="btn btn-primary" href="/new-match/show-available-opponents" role="button">Pokaż dostępnych przeciwników</a>
         </div>
     </div>

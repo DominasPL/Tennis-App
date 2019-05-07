@@ -45,6 +45,9 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div id="match-button">
+            <a class="btn btn-primary" href="/new-match/show-available-opponents" role="button">Nowy mecz</a>
             <a class="btn btn-primary" href="/" role="button">Powrót</a>
         </div>
     </div>

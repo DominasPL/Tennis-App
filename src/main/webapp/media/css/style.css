@@ -49,6 +49,10 @@ html, body {
     width: 400px;
 }
 
+#match-button {
+    padding-bottom: 40px;
+}
+
 .landing-text {
     display: table-cell;
     text-align: center;
