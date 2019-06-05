@@ -1,4 +1,4 @@
-# Aplikacja do wyszukiwania przeciwnika
+# Aplikacja do wyszukiwania przeciwnika oraz symulacji pojedynku
 ## Wprowadzenie
 Celem projektu było stworzenie aplikacji umożliwiającej użytkownikowi wylosowanie 
 rywala na podstawie rankingu oraz przeprowadzenie symulacji pojedynku. Przed wylosowaniem przeciwnika wyświetlane są ostatnie pojedynki użytkownika. 
