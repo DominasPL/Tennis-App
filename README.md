@@ -26,6 +26,12 @@ Ostatnie pojedynki można zobaczyć  w zakładce "Ostatnie mecze". Istnieje moż
 * Przeprowadznie symulacji pojedynku
 * Możliwość komentowania ostatnich meczów
 
+## Schemat bazy danych
+<p align="center">
+  <img width="600" height="550" src="https://user-images.githubusercontent.com/47396707/59106534-f0a38b80-8936-11e9-99ba-0b556a9c09a6.jpg">
+</p>
+
+
 ## Uruchomienie
 Przed uruchomieniem aplikacji należy utworzyć baze danych "tennis" lub skorzystać z własnej bazy. 
 Jeżeli nazwa bazy będzie inna należy edytować plik application.properties znajdujący się w folderze resources
