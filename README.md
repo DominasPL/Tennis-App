@@ -7,7 +7,7 @@ Po przejściu do doboru kolejnego rywala wyświetlana jest ilość dostępnych p
 Ostatnie pojedynki można zobaczyć  w zakładce "Ostatnie mecze". Istnieje możliwość dodawania komentarzy do każdego meczu. Wszystkie statystyki użytkowników można zobaczyć w zakładce "Ranking".
 ![tennis_app2](https://user-images.githubusercontent.com/47396707/58972390-c4b0ca80-87bd-11e9-8cc7-7fd19afeb382.jpg)
 ![tennis_app3](https://user-images.githubusercontent.com/47396707/58972426-d7c39a80-87bd-11e9-8e79-89792e97bede.jpg)
-### Technologie
+## Technologie
 * Java
 * Spring Boot
 * Spring Security
